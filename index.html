@@ -1,194 +1,155 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja de Jogos</title>
-    <style>
-        /* Resetando algumas propriedades padrões do navegador */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogos Mais Vendidos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1b0033;
+      color: #e0ffe0;
+    }
 
-        /* Corpo da página */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f7f7f7;
-            color: #333;
-        }
+    header {
+      background-color: #4b0082;
+      padding: 20px;
+      text-align: center;
+    }
 
-        /* Barra de navegação */
-        nav {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
+    header h1 {
+      color: #adff2f;
+      margin: 0;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-        }
+    nav {
+      background-color: #2e0854;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+    nav button {
+      background-color: #adff2f;
+      color: #1b0033;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-        /* Seção principal */
-        .container {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    nav button:hover {
+      background-color: #90ee90;
+    }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 36px;
-            color: #444;
-        }
+    .page {
+      display: none;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+      background-color: #2e0854;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
 
-        /* Lista de jogos */
-        .game-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
+    .active {
+      display: block;
+    }
 
-        .game-item {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            width: 200px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    .game {
+      background-color: #4b0082;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-left: 5px solid #adff2f;
+      border-radius: 5px;
+    }
 
-        .game-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    .game h3 {
+      margin: 0 0 5px 0;
+      color: #adff2f;
+    }
 
-        .game-item img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .game-item h3 {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        /* Detalhes do jogo */
-        .game-details {
-            display: none;
-            background-color: #fff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .game-details h2 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .game-details p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        /* Botão de voltar */
-        .btn-back {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .btn-back:hover {
-            background-color: #444;
-        }
-
-    </style>
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1b0033;
+      color: #999;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Barra de navegação -->
-    <nav>
-        <a href="#">Início</a>
-        <a href="#">Jogos</a>
-        <a href="#">Sobre</a>
-        <a href="#">Contato</a>
-    </nav>
+  <header>
+    <h1>🎮 Jogos Mais Vendidos do Mundo</h1>
+  </header>
 
-    <!-- Seção de conteúdo -->
-    <div class="container">
-        <h1>Bem-vindo à Loja de Jogos!</h1>
+  <nav>
+    <button onclick="showPage('home')">Início</button>
+    <button onclick="showPage('topGames')">Top Jogos</button>
+    <button onclick="showPage('sobre')">Sobre</button>
+  </nav>
 
-        <div class="game-list">
-            <!-- Cada jogo é representado por um item -->
-            <div class="game-item" onclick="showGameDetails('Jogo 1', 'Jogo 1 é um jogo de ação incrível. Desfrute de gráficos de última geração e jogabilidade envolvente.', 'game1.jpg')">
-                <img src="game1.jpg" alt="Jogo 1">
-                <h3>Jogo 1</h3>
-                <p>Ação</p>
-            </div>
-            <div class="game-item" onclick="showGameDetails('Jogo 2', 'Jogo 2 é um jogo de aventura com uma história envolvente e mundos expansivos.', 'game2.jpg')">
-                <img src="game2.jpg" alt="Jogo 2">
-                <h3>Jogo 2</h3>
-                <p>Aventura</p>
-            </div>
-            <div class="game-item" onclick="showGameDetails('Jogo 3', 'Jogo 3 é um jogo de estratégia onde você precisa planejar cada movimento.', 'game3.jpg')">
-                <img src="game3.jpg" alt="Jogo 3">
-                <h3>Jogo 3</h3>
-                <p>Estratégia</p>
-            </div>
-        </div>
+  <!-- PÁGINA INÍCIO -->
+  <div id="home" class="page active">
+    <h2>Bem-vindo ao nosso site!</h2>
+    <p>Descubra os jogos mais vendidos da história e veja o que torna cada um deles tão especial. Clique em <strong>Top Jogos</strong> para começar!</p>
+  </div>
 
-        <!-- Detalhes do jogo selecionado -->
-        <div class="game-details" id="gameDetails">
-            <h2 id="gameTitle">Título do Jogo</h2>
-            <p id="gameDescription">Descrição do jogo...</p>
-            <a href="#" class="btn-back" onclick="backToList()">Voltar para a lista de jogos</a>
-        </div>
+  <!-- PÁGINA TOP JOGOS -->
+  <div id="topGames" class="page">
+    <h2>Top 5 Jogos Mais Vendidos</h2>
+
+    <div class="game">
+      <h3>1. Minecraft</h3>
+      <p>Mais de 300 milhões de cópias vendidas. Um jogo de construção e sobrevivência amado por todas as idades.</p>
     </div>
 
-    <script>
-        // Função para mostrar os detalhes do jogo ao clicar
-        function showGameDetails(title, description, image) {
-            // Esconder a lista de jogos
-            document.querySelector('.game-list').style.display = 'none';
-            
-            // Mostrar os detalhes do jogo
-            document.getElementById('gameDetails').style.display = 'block';
-            document.getElementById('gameTitle').textContent = title;
-            document.getElementById('gameDescription').textContent = description;
-            document.getElementById('gameDetails').style.backgroundImage = 'url(' + image + ')';
-            document.getElementById('gameDetails').style.backgroundSize = 'cover';
-        }
+    <div class="game">
+      <h3>2. Grand Theft Auto V</h3>
+      <p>Mais de 185 milhões de cópias. Um jogo de ação em mundo aberto com uma história envolvente e modo online duradouro.</p>
+    </div>
 
-        // Função para voltar para a lista de jogos
-        function backToList() {
-            document.querySelector('.game-list').style.display = 'flex';
-            document.getElementById('gameDetails').style.display = 'none';
-        }
-    </script>
+    <div class="game">
+      <h3>3. Tetris (EA)</h3>
+      <p>Mais de 100 milhões de cópias. O clássico puzzle que conquistou gerações.</p>
+    </div>
+
+    <div class="game">
+      <h3>4. Wii Sports</h3>
+      <p>Mais de 82 milhões de cópias. Um sucesso casual que veio junto com o Nintendo Wii.</p>
+    </div>
+
+    <div class="game">
+      <h3>5. PUBG (PlayerUnknown's Battlegrounds)</h3>
+      <p>Mais de 75 milhões de cópias. Um dos precursores do gênero battle royale.</p>
+    </div>
+  </div>
+
+  <!-- PÁGINA SOBRE -->
+  <div id="sobre" class="page">
+    <h2>Sobre o Site</h2>
+    <p>Este site foi criado para apresentar os jogos mais vendidos do mundo de forma organizada e interativa, com base em dados públicos até 2025.</p>
+    <p>Feito com ❤ em HTML, CSS e JavaScript.</p>
+  </div>
+
+  <footer>
+    © 2025 Loja de Jogos Mais Vendidos
+  </footer>
+
+  <script>
+    // Função para alternar entre páginas
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+
+      document.getElementById(pageId).classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
-
-
